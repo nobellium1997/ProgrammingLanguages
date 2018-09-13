@@ -24,5 +24,5 @@ tupleDotProduct [] [] = 0
 tupleDotProduct (q:qs) (p:ps) = (q * p) + tupleDotProduct qs ps
 
 -- revZip2Lists
-revZip2Lists [x] [y] = [(x, y)]
-revZip2Lists (x:xs) (y:ys) = revZip2Lists (xs) (ys) ++ [(x, y)]
+revZip2Lists [x] [y] = [(y, x)]
+revZip2Lists (x:xs) (y:ys) = revZip2Lists (xs) (ys) ++ [(y, x)]
