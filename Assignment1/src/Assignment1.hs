@@ -3,7 +3,8 @@ module Assignment1
     distance,
     tripleDistance,
     findMin,
-    tupleDotProduct
+    tupleDotProduct,
+    revZip2Lists
     ) where
 -- Dot Product
 sDotProduct  x (arg1, arg2) (arg3, arg4) = ((arg1 * arg2) + (arg3 * arg4)) * x
@@ -21,3 +22,7 @@ findMin (x:y:xs) = if (x < y) then findMin(x:xs) else findMin(y:xs)
 -- Tuple Dot Product
 tupleDotProduct [] [] = 0
 tupleDotProduct (q:qs) (p:ps) = (q * p) + tupleDotProduct qs ps
+
+-- revZip2Lists
+revZip2Lists [x] [y] = [(x, y)]
+revZip2Lists (x:xs) (y:ys) = revZip2Lists (xs) (ys) ++ [(x, y)]
