@@ -8,7 +8,7 @@ module Assignment1
     everyThird
     ) where
 -- Dot Product
-sDotProduct  x (arg1, arg2) (arg3, arg4) = ((arg1 * arg2) + (arg3 * arg4)) * x
+sDotProduct s (x1, y1) (x2, y2) = ((x1 * x2) + (y1*y2)) * s
 
 -- Distance
 distance (x1, y1) (x2, y2)  = sqrt ((x2 - x1) ^ 2  + (y2 - y1) ^ 2)
