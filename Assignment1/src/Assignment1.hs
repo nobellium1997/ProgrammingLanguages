@@ -4,7 +4,8 @@ module Assignment1
     tripleDistance,
     findMin,
     tupleDotProduct,
-    revZip2Lists
+    revZip2Lists,
+    everyThird
     ) where
 -- Dot Product
 sDotProduct  x (arg1, arg2) (arg3, arg4) = ((arg1 * arg2) + (arg3 * arg4)) * x
@@ -26,3 +27,9 @@ tupleDotProduct (q:qs) (p:ps) = (q * p) + tupleDotProduct qs ps
 -- revZip2Lists
 revZip2Lists [x] [y] = [(y, x)]
 revZip2Lists (x:xs) (y:ys) = revZip2Lists (xs) (ys) ++ [(y, x)]
+
+-- everyThird
+everyThird [] = []
+everyThird [x] = []
+everyThird [x,y] = []
+everyThird (x:y:z:xs) = [z] ++ everyThird (xs)
