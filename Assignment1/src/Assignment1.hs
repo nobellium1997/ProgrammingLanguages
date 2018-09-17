@@ -1,12 +1,5 @@
-module Assignment1
-    ( sDotProduct,
-    distance,
-    tripleDistance,
-    findMin,
-    tupleDotProduct,
-    revZip2Lists,
-    everyThird
-    ) where
+module A1c where
+
 -- Dot Product
 sDotProduct s (x1, y1) (x2, y2) = ((x1 * x2) + (y1*y2)) * s
 
@@ -17,6 +10,7 @@ distance (x1, y1) (x2, y2)  = sqrt ((x2 - x1) ^ 2  + (y2 - y1) ^ 2)
 tripleDistance (x1, y1, z1) (x2, y2, z2) = sqrt ((x2-x1) ^ 2 + (y2 - y1) ^ 2 + (z2 - z1) ^ 2)
 
 -- Find Min
+findMin [] = 0
 findMin [x] = x
 findMin (x:y:xs) = if (x < y) then findMin(x:xs) else findMin(y:xs)
 
@@ -25,6 +19,7 @@ tupleDotProduct [] [] = 0
 tupleDotProduct (q:qs) (p:ps) = (q * p) + tupleDotProduct qs ps
 
 -- revZip2Lists
+revZip2Lists [] [] = []
 revZip2Lists [x] [y] = [(y, x)]
 revZip2Lists (x:xs) (y:ys) = revZip2Lists (xs) (ys) ++ [(y, x)]
 
