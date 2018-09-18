@@ -28,3 +28,31 @@ everyThird [] = []
 everyThird [x] = []
 everyThird [x,y] = []
 everyThird (x:y:z:xs) = [z] ++ everyThird (xs)
+
+-- minMax
+minMax (x:y:xs) = minMaxHelper x y xs
+  where
+    minMaxHelper min max [] = (min,max)
+    minMaxHelper min max [x] = if (x < min)
+                                  then (x, max)
+                                  else if (x > max)
+                                      then (min, x)
+                               else (min, max)
+    minMaxHelper min max (x:y:xs) = if (x < y)
+                                       then if (x < min && y > max)
+                                            then minMaxHelper x y xs
+                                                else if (x < min)
+                                                     then minMaxHelper x max xs
+                                                else if (y > max)
+                                                     then minMaxHelper min y xs
+                                            else minMaxHelper min max xs
+                                     else if (y < x)
+                                          then if (y < min && x > max)
+                                               then minMaxHelper y x xs
+                                               else if (y < min)
+                                                    then minMaxHelper y max xs
+                                               else if (x > max)
+                                                    then minMaxHelper min x xs
+                                          else minMaxHelper min max xs
+                                     else minMaxHelper min max xs
+
