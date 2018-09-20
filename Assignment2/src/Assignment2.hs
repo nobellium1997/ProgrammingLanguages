@@ -22,4 +22,9 @@ substitute a b (x:xs) = if (a == x) then b : substitute a b xs else x : substitu
 
 -- mergeSorted3
 mergeSorted3 :: Ord a => [a] -> [a] -> [a] -> [a]
+mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
+  where
+    mergeHelper xs [] = xs
+    mergeHelper [] ys = ys
+    mergeHelper (x:xs) (y:ys) = if(x < y) then x : mergeHelper xs (y:ys) else y : mergeHelper (x:xs) ys
 
