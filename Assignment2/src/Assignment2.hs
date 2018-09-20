@@ -2,7 +2,8 @@ module Assignment2
     ( removeAllExcept,
       removeAll,
       substitute,
-      mergeSorted3
+      mergeSorted3,
+      nodeValue
     ) where
 
 -- Remove All except
@@ -28,3 +29,15 @@ mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
     mergeHelper [] ys = ys
     mergeHelper (x:xs) (y:ys) = if(x < y) then x : mergeHelper xs (y:ys) else y : mergeHelper (x:xs) ys
 
+data TriTree a = EmptyNode | TriNode a (TriTree a) (TriTree a) (TriTree a)
+
+instance (Eq a) => Eq (TriTree a) where
+  EmptyNode           == EmptyNode = True
+  TriNode a la ma ra  == TriNode b lb mb rb = (a == b) &&
+                                              (la == lb) &&
+                                              (ma == mb) &&
+                                              (ra == rb)
+  _                   == _ = False
+
+nodeValue :: TriTree a -> a
+nodeValue (TriNode value left middle right) = value
