@@ -41,3 +41,5 @@ instance (Eq a) => Eq (TriTree a) where
 
 nodeValue :: TriTree a -> a
 nodeValue (TriNode value left middle right) = value
+nodeValue EmptyNode = error "Passed in empty tree"
+
