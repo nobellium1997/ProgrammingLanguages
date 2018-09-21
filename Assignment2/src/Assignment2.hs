@@ -4,7 +4,8 @@ module Assignment2
       substitute,
       mergeSorted3,
       nodeValue,
-      leftChild
+      leftChild,
+      middleChild
     ) where
 
 -- Remove All except
@@ -48,3 +49,10 @@ leftChild :: TriTree a -> TriTree a
 leftChild (TriNode value left middle right) = left
 leftChild EmptyNode = error "Passed in empty tree"
 
+middleChild :: TriTree a -> TriTree a
+middleChild (TriNode value left middle right) = middle
+middleChild EmptyNode = error "Passed in empty tree"
+
+rightChild :: TriTree a -> TriTree a
+rightChild (TriNode value left middle right) = right
+rightChild EmptyNode = error "Passed in empty tree"
