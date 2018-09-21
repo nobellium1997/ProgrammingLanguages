@@ -31,6 +31,7 @@ mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
     mergeHelper [] ys = ys
     mergeHelper (x:xs) (y:ys) = if(x < y) then x : mergeHelper xs (y:ys) else y : mergeHelper (x:xs) ys
 
+-- Defined TriTree data structure
 data TriTree a = EmptyNode | TriNode a (TriTree a) (TriTree a) (TriTree a)
 
 instance (Eq a) => Eq (TriTree a) where
@@ -41,18 +42,22 @@ instance (Eq a) => Eq (TriTree a) where
                                               (ra == rb)
   _                   == _ = False
 
+-- node Value
 nodeValue :: TriTree a -> a
 nodeValue (TriNode value left middle right) = value
 nodeValue EmptyNode = error "Passed in empty tree"
 
+-- left child
 leftChild :: TriTree a -> TriTree a
 leftChild (TriNode value left middle right) = left
 leftChild EmptyNode = error "Passed in empty tree"
 
+-- middle child
 middleChild :: TriTree a -> TriTree a
 middleChild (TriNode value left middle right) = middle
 middleChild EmptyNode = error "Passed in empty tree"
 
+-- right child
 rightChild :: TriTree a -> TriTree a
 rightChild (TriNode value left middle right) = right
 rightChild EmptyNode = error "Passed in empty tree"
