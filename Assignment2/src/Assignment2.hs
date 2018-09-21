@@ -3,7 +3,8 @@ module Assignment2
       removeAll,
       substitute,
       mergeSorted3,
-      nodeValue
+      nodeValue,
+      leftChild
     ) where
 
 -- Remove All except
@@ -42,4 +43,8 @@ instance (Eq a) => Eq (TriTree a) where
 nodeValue :: TriTree a -> a
 nodeValue (TriNode value left middle right) = value
 nodeValue EmptyNode = error "Passed in empty tree"
+
+leftChild :: TriTree a -> TriTree a
+leftChild (TriNode value left middle right) = left
+leftChild EmptyNode = error "Passed in empty tree"
 
