@@ -5,7 +5,8 @@ module Assignment2
       mergeSorted3,
       nodeValue,
       leftChild,
-      middleChild
+      middleChild,
+      inTree
     ) where
 
 -- Remove All except
@@ -62,4 +63,11 @@ rightChild :: TriTree a -> TriTree a
 rightChild (TriNode value left middle right) = right
 rightChild EmptyNode = error "Passed in empty tree"
 
---
+-- inTree
+inTree :: Eq a => a -> TriTree a -> Bool
+inTree _ EmptyNode = error "Passed in empty tree"
+inTree x (TriNode value left middle right) = if x == value
+                                                  then True
+                                                  else if left /= EmptyNode
+                                                       then inTree x left
+                                                  else False
