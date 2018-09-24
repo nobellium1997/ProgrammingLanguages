@@ -61,3 +61,5 @@ middleChild EmptyNode = error "Passed in empty tree"
 rightChild :: TriTree a -> TriTree a
 rightChild (TriNode value left middle right) = right
 rightChild EmptyNode = error "Passed in empty tree"
+
+--
