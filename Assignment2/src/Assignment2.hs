@@ -65,9 +65,7 @@ rightChild EmptyNode = error "Passed in empty tree"
 
 -- inTree
 inTree :: Eq a => a -> TriTree a -> Bool
-inTree _ EmptyNode = error "Passed in empty tree"
-inTree x (TriNode value left middle right) = if x == value
-                                                  then True
-                                                  else if left /= EmptyNode
-                                                       then inTree x left
-                                                  else False
+inTree _ EmptyNode = False
+inTree x (TriNode value left middle right)
+  | x == value = True
+  | otherwise = inTree x left || inTree x middle || inTree x right
