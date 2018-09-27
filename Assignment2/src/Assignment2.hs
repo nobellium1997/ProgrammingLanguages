@@ -6,7 +6,8 @@ module Assignment2
       nodeValue,
       leftChild,
       middleChild,
-      inTree
+      inTree,
+      leafList
     ) where
 
 -- Remove All except
@@ -69,3 +70,11 @@ inTree _ EmptyNode = False
 inTree x (TriNode value left middle right)
   | x == value = True
   | otherwise = inTree x left || inTree x middle || inTree x right
+
+-- leaf list
+leafList :: TriTree a -> [a]
+leafList EmptyNode = []
+leafList (TriNode value EmptyNode EmptyNode EmptyNode) = [value]
+leafList (TriNode value left middle right) =
+  leafList left ++ leafList middle ++ leafList right
+
