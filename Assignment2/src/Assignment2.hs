@@ -7,7 +7,8 @@ module Assignment2
       leftChild,
       middleChild,
       inTree,
-      leafList
+      leafList,
+      inOrderMap
     ) where
 
 -- Remove All except
@@ -35,6 +36,7 @@ mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
 
 -- Defined TriTree data structure
 data TriTree a = EmptyNode | TriNode a (TriTree a) (TriTree a) (TriTree a)
+  deriving Show
 
 instance (Eq a) => Eq (TriTree a) where
   EmptyNode           == EmptyNode = True
@@ -78,3 +80,8 @@ leafList (TriNode value EmptyNode EmptyNode EmptyNode) = [value]
 leafList (TriNode value left middle right) =
   leafList left ++ leafList middle ++ leafList right
 
+-- inOrderMap
+inOrderMap :: (a -> b) -> TriTree a -> TriTree b
+inOrderMap f EmptyNode = EmptyNode
+inOrderMap f (TriNode value left middle right) =
+  (TriNode (f value) (inOrderMap f left) (inOrderMap f middle) (inOrderMap f right))
