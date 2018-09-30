@@ -1,30 +1,40 @@
 module Assignment2
-    ( removeAllExcept,
-      removeAll,
-      substitute,
-      mergeSorted3,
-      nodeValue,
-      leftChild,
-      middleChild,
-      inTree,
-      leafList,
-      inOrderMap
-    ) where
+  ( removeAllExcept
+  , removeAll
+  , substitute
+  , mergeSorted3
+  , nodeValue
+  , leftChild
+  , middleChild
+  , inTree
+  , leafList
+  , inOrderMap
+  , preOrderFold
+  ) where
 
 -- Remove All except
 removeAllExcept :: Eq a => a -> [a] -> [a]
 removeAllExcept a [] = []
-removeAllExcept a (x:xs) = if (a /= x) then removeAllExcept a xs else x : removeAllExcept a xs
+removeAllExcept a (x:xs) =
+  if (a /= x)
+    then removeAllExcept a xs
+    else x : removeAllExcept a xs
 
 -- Remove All
 removeAll :: Eq a => a -> [a] -> [a]
 removeAll a [] = []
-removeAll a (x:xs) = if (a == x) then removeAll a xs else x : removeAll a xs
+removeAll a (x:xs) =
+  if (a == x)
+    then removeAll a xs
+    else x : removeAll a xs
 
 -- substitute
 substitute :: Eq a => a -> a -> [a] -> [a]
 substitute a b [] = []
-substitute a b (x:xs) = if (a == x) then b : substitute a b xs else x : substitute a b xs
+substitute a b (x:xs) =
+  if (a == x)
+    then b : substitute a b xs
+    else x : substitute a b xs
 
 -- mergeSorted3
 mergeSorted3 :: Ord a => [a] -> [a] -> [a] -> [a]
@@ -32,19 +42,25 @@ mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
   where
     mergeHelper xs [] = xs
     mergeHelper [] ys = ys
-    mergeHelper (x:xs) (y:ys) = if(x < y) then x : mergeHelper xs (y:ys) else y : mergeHelper (x:xs) ys
+    mergeHelper (x:xs) (y:ys) =
+      if (x < y)
+        then x : mergeHelper xs (y : ys)
+        else y : mergeHelper (x : xs) ys
 
 -- Defined TriTree data structure
-data TriTree a = EmptyNode | TriNode a (TriTree a) (TriTree a) (TriTree a)
-  deriving Show
+data TriTree a
+  = EmptyNode
+  | TriNode a
+            (TriTree a)
+            (TriTree a)
+            (TriTree a)
+  deriving (Show)
 
 instance (Eq a) => Eq (TriTree a) where
-  EmptyNode           == EmptyNode = True
-  TriNode a la ma ra  == TriNode b lb mb rb = (a == b) &&
-                                              (la == lb) &&
-                                              (ma == mb) &&
-                                              (ra == rb)
-  _                   == _ = False
+  EmptyNode == EmptyNode = True
+  TriNode a la ma ra == TriNode b lb mb rb =
+    (a == b) && (la == lb) && (ma == mb) && (ra == rb)
+  _ == _ = False
 
 -- node Value
 nodeValue :: TriTree a -> a
@@ -84,4 +100,14 @@ leafList (TriNode value left middle right) =
 inOrderMap :: (a -> b) -> TriTree a -> TriTree b
 inOrderMap f EmptyNode = EmptyNode
 inOrderMap f (TriNode value left middle right) =
-  (TriNode (f value) (inOrderMap f left) (inOrderMap f middle) (inOrderMap f right))
+  (TriNode
+     (f value)
+     (inOrderMap f left)
+     (inOrderMap f middle)
+     (inOrderMap f right))
+
+-- preOrderFold
+preOrderFold :: (b -> a -> b) -> b -> TriTree a -> b
+preOrderFold f x EmptyNode = x
+preOrderFold f x (TriNode value left middle right) =
+  preOrderFold f (f x value) right
