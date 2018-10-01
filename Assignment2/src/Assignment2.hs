@@ -110,4 +110,7 @@ inOrderMap f (TriNode value left middle right) =
 preOrderFold :: (b -> a -> b) -> b -> TriTree a -> b
 preOrderFold f x EmptyNode = x
 preOrderFold f x (TriNode value left middle right) =
-  preOrderFold f (f x value) right
+  f (preOrderFold f middle' right) value
+  where
+    middle' = preOrderFold f left' middle
+    left' = preOrderFold f x left
