@@ -1,16 +1,4 @@
-module Assignment2
-  ( removeAllExcept
-  , removeAll
-  , substitute
-  , mergeSorted3
-  , nodeValue
-  , leftChild
-  , middleChild
-  , inTree
-  , leafList
-  , inOrderMap
-  , preOrderFold
-  ) where
+module A2b where
 
 -- Remove All except
 removeAllExcept :: Eq a => a -> [a] -> [a]
