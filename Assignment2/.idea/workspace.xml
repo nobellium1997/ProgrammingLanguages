@@ -4,6 +4,7 @@
     <list default="true" id="ce3b74db-2fcb-43c4-879e-cb5787441b14" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/A2b.hs" beforeDir="false" afterPath="$PROJECT_DIR$/src/A2b.hs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a2b-tests.hs" beforeDir="false" afterPath="$PROJECT_DIR$/src/a2b-tests.hs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.stack-work/" />
@@ -17,11 +18,12 @@
     <session id="2106115236">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -36,32 +38,32 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="hs" value="3132" />
+          <entry key="hs" value="4853" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Haskell file" value="3132" />
+          <entry key="Haskell file" value="4853" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/A2b.hs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="106" column="79" selection-start-line="106" selection-start-column="79" selection-end-line="106" selection-end-column="79" />
+            <state relative-caret-position="513">
+              <caret line="99" column="29" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/a2b-tests.hs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="43" column="135" selection-start-line="43" selection-start-column="135" selection-end-line="43" selection-end-column="135" />
+            <state relative-caret-position="520">
+              <caret line="111" column="65" selection-start-line="111" selection-start-column="65" selection-end-line="111" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -76,6 +78,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/Assignment2.hs" />
         <option value="$PROJECT_DIR$/src/A2b.hs" />
+        <option value="$PROJECT_DIR$/src/a2b-tests.hs" />
       </list>
     </option>
   </component>
@@ -91,8 +94,8 @@
     </layout>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1078" />
-    <option name="y" value="349" />
+    <option name="x" value="-2" />
+    <option name="y" value="21" />
     <option name="width" value="1924" />
     <option name="height" value="1061" />
   </component>
@@ -126,7 +129,7 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538435669967" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538520894872" />
     <property name="last_opened_file_path" value="$USER_HOME$/.local/bin/hindent" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -156,15 +159,16 @@
       <updated>1538363836232</updated>
       <workItem from="1538363840095" duration="2962000" />
       <workItem from="1538366826201" duration="3294000" />
-      <workItem from="1538434829960" duration="981000" />
+      <workItem from="1538434829960" duration="2399000" />
+      <workItem from="1538519425133" duration="1273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7290000" />
+    <option name="totallyTimeSpent" value="9981000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1078" y="349" width="1924" height="1061" extended-state="0" />
+    <frame x="-2" y="21" width="1924" height="1061" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -182,7 +186,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3283582" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3272921" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3287234" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -234,17 +238,17 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Assignment2.hs" />
-    <entry file="file://$PROJECT_DIR$/src/a2b-tests.hs">
+    <entry file="file://$PROJECT_DIR$/src/A2b.hs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="43" column="135" selection-start-line="43" selection-start-column="135" selection-end-line="43" selection-end-column="135" />
+        <state relative-caret-position="513">
+          <caret line="99" column="29" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/A2b.hs">
+    <entry file="file://$PROJECT_DIR$/src/a2b-tests.hs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="106" column="79" selection-start-line="106" selection-start-column="79" selection-end-line="106" selection-end-column="79" />
+        <state relative-caret-position="520">
+          <caret line="111" column="65" selection-start-line="111" selection-start-column="65" selection-end-line="111" selection-end-column="65" />
         </state>
       </provider>
     </entry>

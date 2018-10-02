@@ -2,7 +2,7 @@ module A2b where
 
 -- Remove All except
 removeAllExcept :: Eq a => a -> [a] -> [a]
-removeAllExcept a [] = []
+removeAllExcept _ [] = []
 removeAllExcept a (x:xs) =
   if (a /= x)
     then removeAllExcept a xs
@@ -10,7 +10,7 @@ removeAllExcept a (x:xs) =
 
 -- Remove All
 removeAll :: Eq a => a -> [a] -> [a]
-removeAll a [] = []
+removeAll _ [] = []
 removeAll a (x:xs) =
   if (a == x)
     then removeAll a xs
@@ -18,7 +18,7 @@ removeAll a (x:xs) =
 
 -- substitute
 substitute :: Eq a => a -> a -> [a] -> [a]
-substitute a b [] = []
+substitute _ _ [] = []
 substitute a b (x:xs) =
   if (a == x)
     then b : substitute a b xs
@@ -26,6 +26,7 @@ substitute a b (x:xs) =
 
 -- mergeSorted3
 mergeSorted3 :: Ord a => [a] -> [a] -> [a] -> [a]
+mergeSorted3 [] [] [] = []
 mergeSorted3 xs ys zs = mergeHelper zs (mergeHelper xs ys)
   where
     mergeHelper xs [] = xs
@@ -86,7 +87,7 @@ leafList (TriNode value left middle right) =
 
 -- inOrderMap
 inOrderMap :: (a -> b) -> TriTree a -> TriTree b
-inOrderMap f EmptyNode = EmptyNode
+inOrderMap _ EmptyNode = EmptyNode
 inOrderMap f (TriNode value left middle right) =
   (TriNode
      (f value)
@@ -96,12 +97,6 @@ inOrderMap f (TriNode value left middle right) =
 
 -- preOrderFold
 preOrderFold :: (b -> a -> b) -> b -> TriTree a -> b
---preOrderFold f x (TriNode value left middle right) =
---  f (preOrderFold f middle' right) value
---  where
---    middle' = preOrderFold f left' middle
---    left' = preOrderFold f x left
-
 preOrderFold f x EmptyNode = x
 preOrderFold f x (TriNode value left middle right) =
   preOrderFold f (preOrderFold f (preOrderFold f (f x value) left) middle) right
