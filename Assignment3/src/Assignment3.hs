@@ -11,4 +11,8 @@ onlyLowercase xs = filter isLowerHelper xs
 -- longestString (first version)
 longestString :: [String] -> String
 longestString [] = ""
-longestString xs = foldl (\x y -> if x > y then x else y) "" xs
+longestString xs = foldl (\x y -> if length x >= length y then x else y) "" xs
+
+-- longestString (second version)
+longestString' :: [String] -> String
+longestString' xs = foldl (\x y -> if length x > length y then x else y) "" xs
