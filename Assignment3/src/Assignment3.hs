@@ -21,14 +21,12 @@ longestString' xs = foldl (\x y -> if length x > length y then x else y) "" xs
 -- longestStringHelper
 longestStringHelper :: (Int -> Int -> Bool) -> [String] -> String
 longestStringHelper _ [] = ""
-longestStringHelper f xs = longestStringHelper' f (head xs) xs
+longestStringHelper f xs = foldl f' "" xs
   where
-  longestStringHelper' f acc [x] = if f (length acc) (length x)
-                                      then acc
-                                      else x
-  longestStringHelper' f acc (x:xs) = if (f (length acc) (length x))
-                                        then longestStringHelper' f acc xs
-                                        else longestStringHelper' f x xs
+  f' x y = if f (length x) (length y) == True
+             then x
+             else y
+
 
 -- longestString3
 longestString3 :: [String] -> String
