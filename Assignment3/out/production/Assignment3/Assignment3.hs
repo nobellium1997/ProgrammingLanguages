@@ -56,4 +56,4 @@ firstAnswer f (x:xs) = if isNothing (f x) then firstAnswer f xs else f x
 -- allAnswers
 allAnswers :: (a -> Maybe [b]) -> [a] -> Maybe [b]
 allAnswers _ [] = Nothing
-allAnswers f (x:xs) = if isNothing (f x) then allAnswers f xs else allAnswers f xs
+allAnswers f (x:xs) = if isNothing (f x) then firstAnswer f xs else allAnswers f xs
