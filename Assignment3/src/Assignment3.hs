@@ -36,4 +36,7 @@ longestString3 xs = longestStringHelper (\x y -> x >= y) xs
 longestString4 :: [String] -> String
 longestString4 xs = longestStringHelper (\x y -> x > y) xs
 
+-- longestLowercase
+longestLowercase :: [String] -> String
+longestLowercase xs = (longestString . onlyLowercase) xs
 
