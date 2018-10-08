@@ -1,7 +1,7 @@
 module A3b where
 
-import Data.Char(isLower)
-import Data.List(filter)
+import Data.Char
+import Data.List
 
 -- onlyLowercase
 onlyLowercase :: [String] -> [String]
@@ -39,4 +39,11 @@ longestString4 xs = longestStringHelper (\x y -> x > y) xs
 -- longestLowercase
 longestLowercase :: [String] -> String
 longestLowercase xs = (longestString . onlyLowercase) xs
+
+-- revStringRev
+revStringRev :: String -> String
+revStringRev x = (lowerString . reverse) x
+  where
+  lowerString [x] = [toLower x]
+  lowerString (x:xs) = toLower x : lowerString xs
 
