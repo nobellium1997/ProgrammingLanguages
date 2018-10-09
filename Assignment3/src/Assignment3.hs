@@ -58,7 +58,8 @@ allAnswers :: (a -> Maybe [b]) -> [a] -> Maybe [b]
 allAnswers _ [] = Nothing
 allAnswers f (x:xs) = allAnswersHelper f (f x) xs
   where
-  allAnswersHelper _ acc [] = acc
+  allAnswersHelper f acc [] = acc
   allAnswersHelper f acc (x:xs) = if isNothing (f x)
                                     then Nothing
-                                    else allAnswersHelper f ((f x)) xs
+                                    else allAnswersHelper f (concatinate acc (f x)) xs
+  concatinate (Just x) (Just y) = Just (x ++ y)
