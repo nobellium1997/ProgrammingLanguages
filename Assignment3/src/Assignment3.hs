@@ -163,3 +163,7 @@ match (val, pat) =
         then allAnswers match (zip xs ys)
         else Nothing
     (_, _) -> Nothing
+
+-- firstMatch
+firstMatch :: Value -> [Pattern] -> Maybe [(String, Value)]
+firstMatch val xs = firstAnswer (\x -> match (val, x)) xs
