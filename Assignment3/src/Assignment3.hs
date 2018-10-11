@@ -78,7 +78,7 @@ allAnswers f (x:xs) = allAnswersHelper f (f x) xs
   where
     allAnswersHelper f acc [] = acc
     allAnswersHelper f acc (x:xs) =
-      if isNothing (f x)
+      if isNothing (f x) || isNothing acc
         then Nothing
         else allAnswersHelper f (cat acc (f x)) xs
     cat (Just x) (Just y) = Just (x ++ y)
@@ -144,5 +144,22 @@ checkPat pat = checkList (makeList pat)
         else checkList xs
 
 -- match
---match :: (Value, Pattern) -> Maybe [(String, Value)]
---match (val, pat) =
+match :: (Value, Pattern) -> Maybe [(String, Value)]
+match (val, pat) =
+  case (val, pat) of
+    (_, WildcardPat) -> Just []
+    (_, VariablePat s) -> Just [(s, val)]
+    (Unit, UnitPat) -> Just []
+    (Constant x, ConstantPat y) ->
+      if x == y
+        then Just []
+        else Nothing
+    (Constructor (s1, v), ConstructorPat (s2, p)) ->
+      if s1 == s2 && (isNothing (match (v, p))) == False
+        then Just []
+        else Nothing
+    (Tuple xs, TuplePat ys) ->
+      if length xs == length ys
+        then allAnswers match (zip xs ys)
+        else Nothing
+    (_, _) -> Nothing
