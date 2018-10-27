@@ -9,6 +9,14 @@
 
 ; meow-string-map
 (define (meow-string-map lst)
-  (map (lambda (i) 
-	 (string-append i "meow")) lst))
+  (map (lambda (elem) 
+	 (string-append elem "meow")) lst))
 
+; list-ref-div
+(define (list-ref-div lst n)
+  (if (< n 0)
+      (error "list-ref-div: negative number")
+      (if (= (length lst) 0)
+	  (error "list-ref-div:empty list")
+	  (list-ref lst (quotient n (length lst))))))
+	  
