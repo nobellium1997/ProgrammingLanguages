@@ -22,9 +22,12 @@
 
 ; next-k-items
 (define (next-k-items-helper s k)
-  (if (> k -1) 
-      (cons (stream-ref s k) (next-k-items s (- k 1)))
-      `()))
-
+  (if (< k (+ (stream-length s) 1))
+   (if (> k 0) 
+       (cons (stream-ref s (- k 1)) (next-k-items-helper s (- k 1)))
+       `())
+  `()))
+(define (next-k-items s k)
+  (reverse (next-k-items-helper s k)))
 
 	  
