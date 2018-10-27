@@ -19,4 +19,12 @@
       (if (= (length lst) 0)
 	  (error "list-ref-div:empty list")
 	  (list-ref lst (quotient n (length lst))))))
+
+; next-k-items
+(define (next-k-items-helper s k)
+  (if (> k -1) 
+      (cons (stream-ref s k) (next-k-items s (- k 1)))
+      `()))
+
+
 	  
