@@ -38,3 +38,21 @@
 	  0)
       0))
 
+; negate-2-and-5
+(define negate-2-and-5 (letrec ([f (lambda (x)
+				     (cond [(< x 0) 
+					    (cond [(= (remainder (- x 1) 2) 0) 
+						   (cons x (lambda () (f (- x 1))))]
+						  [(= (remainder (- x 1) 5) 0)
+						   (cons x (lambda () (f (- x 1))))]
+						  [else 
+						   (cons x (lambda () (f (* (- x 1) -1))))])]
+					   [else 
+					     (cond [(= (remainder (+ x 1) 2) 0)
+						    (cons x (lambda () (f (* (+ x 1) -1))))]
+						   [(= (remainder (+ x 1) 5) 0)
+						    (cons x (lambda () (f (* (+ x 1) -1))))]
+						   [else 
+						    (cons x (lambda () (f (+ x 1))))])]))])
+			 (lambda () (f 1))))
+
