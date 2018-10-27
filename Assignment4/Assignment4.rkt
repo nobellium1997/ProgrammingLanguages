@@ -1,8 +1,14 @@
 ;#lang racket
 
-; downseries that takes three arguments, step, high, low all assumed to be numbers. Further, step is positive. downseries produces a list of numbers from high to low (including high and possibly low) separated by step and in sorted descending order.  
+; TODO do comments because apparantly without them I'm just getting really lucky about the code I'm writing
+; downseries
 (define (downseries step high low)
   (if (< high low)
   	`()
-	(append (list high) (downseries step (- high step) low))))
+	(cons high (downseries step (- high step) low))))
+
+; meow-string-map
+(define (meow-string-map lst)
+  (map (lambda (i) 
+	 (string-append i "meow")) lst))
 
