@@ -30,4 +30,11 @@
 (define (next-k-items s k)
   (reverse (next-k-items-helper s k)))
 
-	  
+; kth-item
+(define (kth-item s k)
+  (if (< k (+ (stream-length s) 1))
+      (if (> k 0)
+	  (stream-ref s (- k 1))
+	  0)
+      0))
+
