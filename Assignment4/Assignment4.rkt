@@ -53,7 +53,9 @@
                                             (cons yellow-star (lambda () (f key)))]))])
                          (lambda () (f key))))
                                           
-                                         
-
-
+; two-pairs-stream
+(define (two-pair-stream s) 
+  (lambda () (cons (cons 2 (car (s))) (two-pair-stream (cdr (s))))))
+  
+	
 
