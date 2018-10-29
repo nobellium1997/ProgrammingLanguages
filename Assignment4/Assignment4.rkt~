@@ -48,16 +48,6 @@
 
 ; key-heart-star
 (require 2htdp/planetcute)
-(define key-heart-star (letrec ([f (lambda (img)
-                                     (cond [(eq? img key)
-                                            (cons key (lambda () (f heart)))]
-                                           [(eq? img heart)
-                                            (cons heart (lambda () (f yellow-star)))]
-                                           [(eq? img yellow-star)
-                                            (cons yellow-star (lambda () (f key)))]))])
-                         (lambda () (f key))))
-                                          
-                                         
-
+(require 2htdp/image)
 
 
