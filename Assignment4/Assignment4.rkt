@@ -27,11 +27,10 @@
       `()))
 
 ; kth-item
-; TODO fix this you can't use stream-ref
 (define (kth-item s k)
       (if (> k 0)
-	  (stream-ref s (- k 1))
-	  0))
+	  (kth-item (cdr (s)) (- k 1))
+	  (car (s))))
 
 ; negate-2-and-5
 (define negate-2-and-5 (letrec ([f (lambda(x) 
