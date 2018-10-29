@@ -21,14 +21,12 @@
 	  (list-ref lst (quotient n (length lst))))))
 
 ; next-k-items
-(define (next-k-items-helper s k)
+(define (next-k-items s k)
   (if (< k (+ (stream-length s) 1))
    (if (> k 0) 
-       (cons (stream-ref s (- k 1)) (next-k-items-helper s (- k 1)))
+       (cons (car s) (next-k-items (cdr s) (- k 1)))
        `())
   `()))
-(define (next-k-items s k)
-  (reverse (next-k-items-helper s k)))
 
 ; kth-item
 (define (kth-item s k)
