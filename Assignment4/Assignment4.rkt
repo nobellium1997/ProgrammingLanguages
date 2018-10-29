@@ -22,19 +22,16 @@
 
 ; next-k-items
 (define (next-k-items s k)
-  (if (< k (+ (stream-length s) 1))
-   (if (> k 0) 
-       (cons (car s) (next-k-items (cdr s) (- k 1)))
-       `())
-  `()))
+  (if (> k 0)
+      (cons (car (s)) (next-k-items (cdr (s)) (- k 1)))
+      `()))
 
 ; kth-item
+; TODO fix this you can't use stream-ref
 (define (kth-item s k)
-  (if (< k (+ (stream-length s) 1))
       (if (> k 0)
 	  (stream-ref s (- k 1))
-	  0)
-      0))
+	  0))
 
 ; negate-2-and-5
 (define negate-2-and-5 (letrec ([f (lambda(x) 
