@@ -1,6 +1,6 @@
 ;#lang racket
 
-; TODO do comments because apparantly without them I'm just getting really lucky about the code I'm writing
+; TODO write comments because apparantly without them I'm just getting really lucky about the code I'm writing
 ; downseries
 (define (downseries step high low)
   (if (< high low)
@@ -57,5 +57,11 @@
 (define (two-pair-stream s) 
   (lambda () (cons (cons 2 (car (s))) (two-pair-stream (cdr (s))))))
   
-	
+; spin-stream
+(define (spin-stream-helper xs ys n)
+  (lambda () (cons (cons (list-ref xs (modulo n (length xs))) (list-ref ys (modulo n (length ys)))) (spin-stream-helper xs ys (+ n 1)))))
+
+(define (spin-stream xs ys)
+  (spin-stream-helper xs ys 0))
+
 
