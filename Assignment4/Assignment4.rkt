@@ -64,4 +64,17 @@
 (define (spin-stream xs ys)
   (spin-stream-helper xs ys 0))
 
+; kvpv-lookup
+(define (kvpv-lookup-helper v vec n)
+  (cond [(= n (vector-length vec)) 
+	 #f]
+	[(pair? (vector-ref vec n)) 
+	 (if (equal? v (car (vector-ref vec n)))
+	     (vector-ref vec n)
+	     (kvpv-lookup-helper v vec (+ n 1)))]
+	[else 
+	  (kvpv-lookup-helper v vec (+ n 1))]))
+		
+(define (kvpv-lookup v vec)
+  (kvpv-lookup-helper v vec 0))
 
