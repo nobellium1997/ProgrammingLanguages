@@ -82,13 +82,15 @@
 (define (cached-lookup lst n)
   (let ([cache (make-vector n #f)]
 	[cache-pos 0])
-    (lambda (v)
-      (if (pair? (kvpv-lookup v cache))
-	  (cons #t (kvpv-lookup v cache))
-	  (if (pair? (assoc v lst))
+    (lambda (v lst2)
+      (let ([cache-find (kvpv-lookup v cache)]
+	    [list-find (assoc v lst2)])
+      (if (pair? cache-find)
+	  (cons #t cache-find)
+	  (if (pair? list-find)
 	      (begin 
-		      (vector-set! cache (modulo cache-pos (vector-length cache)) v)
+		      (vector-set! cache (modulo cache-pos (vector-length cache)) list-find)
 		      (set! cache-pos (+ cache-pos 1))
-		      (cons #f (assoc v lst)))
-	      #f)))))
+		      (cons #f list-find))
+	      #f))))))
       
