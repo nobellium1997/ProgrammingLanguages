@@ -78,3 +78,17 @@
 (define (kvpv-lookup v vec)
   (kvpv-lookup-helper v vec 0))
 
+; cached-lookup
+(define (cached-lookup lst n)
+  (let ([cache (make-vector n #f)]
+	[cache-pos 0])
+    (lambda (v)
+      (if (pair? (kvpv-lookup v cache))
+	  (cons #t (kvpv-lookup v cache))
+	  (if (pair? (assoc v lst))
+	      (begin 
+		      (vector-set! cache (modulo cache-pos (vector-length cache)) v)
+		      (set! cache-pos (+ cache-pos 1))
+		      (cons #f (assoc v lst)))
+	      #f)))))
+      
