@@ -45,9 +45,9 @@
 
 ; kth-item
 ; takes a stream and a k and returns the kth item of the stream
-; similar to the last one except I only return when k is 1 
+; similar to the last one except I only return when k is 0 
 (define (kth-item s k)
-      (if (> k 1)
+      (if (> k 0)
 	  (kth-item (cdr (s)) (- k 1))
 	  (car (s))))
 
@@ -82,8 +82,8 @@
 ; 2 and the element returned from the stream
 ; I simply had it return a function where it returns the pair of 2 and the stream val and then 
 ; the function with the rest of the stream 
-(define (two-pairs-stream s) 
-  (lambda () (cons (cons 2 (car (s))) (two-pairs-stream (cdr (s))))))
+(define (two-pair-stream s) 
+  (lambda () (cons (cons 2 (car (s))) (two-pair-stream (cdr (s))))))
   
 ; spin-stream
 ; the function underneath was just to help concatinate the two streams together
@@ -143,62 +143,4 @@
 		      (set! cache-pos (+ cache-pos 1))
 		      (cons #f list-find))
 	      #f))))))
-
-(require test-engine/racket-tests)
-
-(define nats (letrec ([f (lambda (x)
-                         (cons x
-                               (lambda () (f (+ x 1)))))])
-               (lambda () (f 1))))
-
-; 1)
-; notice, the first argument to check-expect is our test, the second argument is the expected result
-(check-expect (downseries 2 11 3) '(11 9 7 5 3))
-
-; 2)
-(check-expect (meow-string-map '("hi" "hello" "there")) '("himeow" "hellomeow" "theremeow"))
-
-; 3)
-; you should probably have one that exceeds the bounds of your list though, like 6
-(check-expect (list-ref-div (list 1 2 3) 0) 1)
-(check-expect (list-ref-div (list 1 2 3) 3) 2)
-
-; 4)
-; this assumes you have nats defined
-(check-expect (next-k-items nats 3) '(1 2 3))
-
-; 5)
-(check-expect (kth-item nats 3) 3)
-
-; 6)
-;(check-expect (next-k-items negate-2-and-5 7) '(1 2 -3 4 5 -6 -7))
-
-; 7)
-(check-expect (next-k-items key-heart-star 2) (list key heart))
-
-; 8)
-(check-expect (kth-item (two-pairs-stream nats) 2) '(2 . 2))
-
-; 9)
-(check-expect (next-k-items (spin-stream '(1 2 3) '("a" "b")) 6)
-              '((1 . "a") (2 . "b") (3 . "a") (1 . "b") (2 . "a") (3 . "b")))
-
-; 10)
-(check-expect (kvpv-lookup 2 '#((1 . 1) (2 . 1))) '(2 . 1))
-
-; 11)
-; this will test if you're getting the expected results from the cached-lookup
-(define tstlst '((1 . "a") (2 . "b") (3 . "c") (4 . "d") (5 . "e")))
-(define cl-fun (cached-lookup tstlst 3))
-(check-expect (cl-fun 6 tstlst) #f)
-(check-expect (cl-fun 1 tstlst) '(#f 1 . "a"))
-(check-expect (cl-fun 2 tstlst) '(#f 2 . "b"))
-(check-expect (cl-fun 3 tstlst) '(#f 3 . "c"))
-(check-expect (cl-fun 1 tstlst) '(#t 1 . "a"))
-(check-expect (cl-fun 4 tstlst) '(#f 4 . "d"))
-(check-expect (cl-fun 1 tstlst) '(#f 1 . "a"))
-(check-expect (cl-fun 1 tstlst) '(#t 1 . "a"))
-
-(test)
-
       
