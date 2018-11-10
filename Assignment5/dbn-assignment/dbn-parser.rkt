@@ -48,9 +48,24 @@
     (statement
      ; a statement is one of these many things
      ;;; TODO: Add Paper, Pen, Line, Set and Repeat
+     
+     ; looks like line and set are already here? 
+     ; going to do Paper, Pen, and Repeat
+     
+     ; Paper 
+     ; take the expression and pass it in as the first param followed by the 
+     ; numeric-expr 100 as instructed by the assignment
+     [(PAPER expr) (paper-expr $2 (numeric-expr 100) (numeric-expr 100))]
 
+     ; Pen 
+     ; after seeing pen token it will call the pen-expr with
+     ; the expression following the token
+     [(PEN expr) (pen-expr $2)]
+     
      ; print, simply prints to the console
      [(PRINT expr ) (print-expr $2)]
+
+     ; Set and Line are here a la Jeff... 
      [(SET l-value expr) (assignment-expr $2 $3)]
      [(LINE expr expr expr expr) (line-expr $2 $3 $4 $5)]
      [(VALUE expr) (value-expr $2)]
