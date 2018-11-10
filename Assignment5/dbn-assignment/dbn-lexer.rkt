@@ -109,7 +109,7 @@
    ; identifiers
    ;;; TODO: Add identifiers, which should be a token-IDENTIFIER and contain the lexeme
    
-   ; taken from the example :)
+   ; taken from the example in class
    ; basically concats one or more of type alphabetic with 0 or more of type numeric or alphabetic
    ; and then calls the token_IDENTIFIER on what was passed in through lexeme
    [(:: (:+ alphabetic) (:* (:or numeric alphabetic))) (token-IDENTIFIER lexeme)]
