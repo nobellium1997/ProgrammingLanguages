@@ -103,9 +103,16 @@
    ; literal numbers, these are all ints, make sure it's a good number (this returns #f if it isn't)
    ;;; TODO: Add numbers, which should be a token-NUMERICVALUE and contain an actual number, not a string
 
+   ; just used the regex for one or more numerics and called the token value 
+   [(:+ numeric) (token-NUMERICVALUE (string->number lexeme))]
 
    ; identifiers
    ;;; TODO: Add identifiers, which should be a token-IDENTIFIER and contain the lexeme
+   
+   ; taken from the example :)
+   ; basically concats one or more of type alphabetic with 0 or more of type numeric or alphabetic
+   ; and then calls the token_IDENTIFIER on what was passed in through lexeme
+   [(:: (:+ alphabetic) (:* (:or numeric alphabetic))) (token-IDENTIFIER lexeme)]
 
    ; comments
    [(:: "//" (:* (char-complement (:or #\newline #\linefeed)))
