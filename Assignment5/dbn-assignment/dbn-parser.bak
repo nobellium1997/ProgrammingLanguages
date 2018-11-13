@@ -68,13 +68,12 @@
      ; Set and Line are here a la Jeff... 
      [(SET l-value expr) (assignment-expr $2 $3)]
      [(LINE expr expr expr expr) (line-expr $2 $3 $4 $5)]
+     [(VALUE expr) (value-expr $2)]
 
      ; Repeat
-     ; after seeing the repeat token it will call repeat-expr with
-     ; the identifier, the start, the end, and the block
-     [(REPEAT IDENTIFIER expr expr maybe-newlines block) (repeat-expr $2 $3 $4 $6)]
-     
-     [(VALUE expr) (value-expr $2)]
+     ; takes in a repeat token followed by an identifier start end possible new lines and then a block
+     ; then it passes the id start end and block into repeat-expr
+     [(REPEAT IDENTIFIER start end maybe-newlines block) (repeat-expr $2 $3 $4 $6)]
     
      [(FOREVER maybe-newlines block) (forever-expr $3)]
      [(ANTIALIAS expr) (antialias-expr $2)]
@@ -121,11 +120,7 @@
     ; legal l-values in the language
     (l-value
      ;;; TODO: Add variables (they are l-values)
-     
-     ; varaibles are just identifiers with values so
-     ; just look for a identifier token follwed by an expression and 
-     ; pass it in var-expr
-     [(IDENTIFIER expr) (var-expr $2)]
+     [(IDENTIFIER expr) (var-expr $2)] 
     
      [(LEFTBRACKET expr expr RIGHTBRACKET) (get-paper-loc $2 $3)])
     
@@ -151,7 +146,7 @@
     (rvalues
      [(NUMERICVALUE) (numeric-expr $1)]
      ;;; TODO: the second place you need to add variables, because they can also be r-values
-     [(IDENTIFIER expr) (var-expr $2)]
+     [(IDENTIFIER expr) (var-expr $2)] 
      
      [(LEFTBRACKET expr expr RIGHTBRACKET) (get-paper-loc $2 $3)]
      [(LESSTHAN TIME expr GREATERTHAN) (time-expr $3)]
