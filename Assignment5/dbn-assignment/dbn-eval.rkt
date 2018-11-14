@@ -85,6 +85,10 @@
     [(print-expr exp) (printf "~a~n" (eval-expr env exp)) env]
 
     ; TODO: Add Line expressions
+    ; matches the line-expr statement and calls the draw-line function in paperism.rkt
+    ; after it has succesfully evaluated the expressions 
+    [(line-expr x y x1 y1) 
+     (draw-line (eval-expr env x) (eval-expr env y) (eval-expr env x1) (eval-expr env y1))]
     
     ; Assignment to a paper location, this is a special case
     [(assignment-expr (get-paper-loc x y) color)
@@ -98,6 +102,13 @@
     ; Assignment to a variable name, need to see if it's there first
     ;;; TODO: Add variable assignment, this requires using the environment
     ;;;       to see if it's there and creating it if it's not
+    [(assignment-expr (var-expr var) exp)
+     (let ([lookup (apply-env env var)]
+	   [value (eval-expr env exp)])
+       (if (not (null? lookup))
+	   (setref! lookup value)
+	   (extend-env env var value)))]
+
     
     ; the antialias expression, for setting up antialias stuff
     [(antialias-expr expr)
