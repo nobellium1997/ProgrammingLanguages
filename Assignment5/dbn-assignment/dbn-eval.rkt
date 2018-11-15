@@ -105,7 +105,7 @@
     [(assignment-expr (var-expr var) exp)
      (let ([lookup (apply-env env var)]
 	   [value (eval-expr env exp)])
-       (if (not (null? lookup))
+       (if lookup
 	   (setref! lookup value)
 	   (extend-env env var value)))]
 
@@ -180,17 +180,32 @@
     ; to create a function, we need to create a closure and store it in the
     ; current environment, so a new environment will be passed on here
     ;;; TODO [(command-fun sym params body)
+    [(command-fun sym params body)
+     (if (apply-env env sym)
+	 (error "function already defined")
+	 (extend-env env sym (closure sym params body env)))]
      
     ; and we do the same thing for the numbers
     ;;; TODO (Achievement) [(number-fun sym params body)
+    [(number-fun sym params body) 
+     (if (apply-env env sym)
+	 (error "function already defined")
+	 (extend-env sym (closure sym params body env)))]
      
 
     ; now for expressions as statements, these we ignore the return value of
     ;;; TODO: application as statements, I've left some comments to help you along
-    ; [(apply-expr sym exprs)  
+    [(apply-expr sym exprs)  
      ; evaluate all the arugments, then call the function
-         ; make sure we found it, or return an error otherwise
+     (let ([args ((map (lambda (element) (eval-expr element)) exprs))]
+	   [func (apply-env sym)])
+       ; make sure we found it, or return an error otherwise
        ; return the previous environment to be carried along     
+       (if func
+	   (begin 
+	     ((deref func) args)
+	     env)
+	   (error "not found")))]
     ))
 
 
