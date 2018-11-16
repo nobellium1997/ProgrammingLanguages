@@ -88,7 +88,7 @@
     ; matches the line-expr statement and calls the draw-line function in paperism.rkt
     ; after it has succesfully evaluated the expressions 
     [(line-expr x y x1 y1) 
-     (draw-line (eval-expr env x) (eval-expr env y) (eval-expr env x1) (eval-expr env y1))]
+     (draw-line (eval-expr env x) (eval-expr env y) (eval-expr env x1) (eval-expr env y1)) env]
     
     ; Assignment to a paper location, this is a special case
     [(assignment-expr (get-paper-loc x y) color)
