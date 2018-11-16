@@ -7,6 +7,6 @@ Command Rectangle L B R T
   Line L T L B
 }
 // use it
-Paper 0
-Pen 100
-Rectangle 30 40 70 60
+//Paper 0
+//Pen 100
+//Rectangle 30 40 70 60
