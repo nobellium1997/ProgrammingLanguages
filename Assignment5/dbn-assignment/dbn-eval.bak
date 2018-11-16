@@ -197,16 +197,15 @@
     ;;; TODO: application as statements, I've left some comments to help you along
     [(apply-expr sym exprs)  
      ; evaluate all the arugments, then call the function
-     (let ([args (map (lambda (element) (eval-expr env element)) exprs)]
-	   [func (apply-env env sym)])
+     (let ([args ((map (lambda (element) (eval-expr env element)) exprs))]
+	   [func (apply-env sym)])
        ; make sure we found it, or return an error otherwise
        ; return the previous environment to be carried along     
        (if func
-	   (begin
-             (let ([paramList (map (lambda (e1 e2) (memref e1 e2)) (closure-params func) args)])
-	     (eval-expr (append env paramList) (closure-body func)))
-             env)
-	   (error "function not found")))]
+	   (begin 
+	     ((deref func) args)
+	     env)
+	   (error "not found")))]
     ))
 
 
@@ -266,13 +265,9 @@
     ; the result of the evaluation of all the statements in the body
     ; [(apply-expr sym exprs)
      ; evaluate all the arugments, then call the function
-     ;(let ([args (map (lambda (element) (eval-expr env element)) exprs)]
-           ;[func (apply-env env sym)])
          ; make sure we found it, or return an error otherwise
-         ;(if func
                   ; grab the closure from the environment, which has parameters
                      ; then evaluate all the statements and return the result
-             
     ))
   
   

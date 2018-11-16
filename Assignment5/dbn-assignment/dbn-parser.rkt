@@ -125,7 +125,8 @@
      ; varaibles are just identifiers with values so
      ; just look for a identifier token follwed by an expression and 
      ; pass it in var-expr
-     [(IDENTIFIER expr) (var-expr $2)]
+     ;[(IDENTIFIER expr) (var-expr $2)]
+     [(IDENTIFIER) (var-expr $1)]
     
      [(LEFTBRACKET expr expr RIGHTBRACKET) (get-paper-loc $2 $3)])
     
@@ -151,7 +152,8 @@
     (rvalues
      [(NUMERICVALUE) (numeric-expr $1)]
      ;;; TODO: the second place you need to add variables, because they can also be r-values
-     [(IDENTIFIER expr) (var-expr $2)]
+     ;[(IDENTIFIER expr) (var-expr $2)]
+     [(IDENTIFIER) (var-expr $1)]
      
      [(LEFTBRACKET expr expr RIGHTBRACKET) (get-paper-loc $2 $3)]
      [(LESSTHAN TIME expr GREATERTHAN) (time-expr $3)]
