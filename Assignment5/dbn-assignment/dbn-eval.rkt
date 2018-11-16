@@ -264,15 +264,17 @@
     ; handle function application as an expression, these we care about the return value
     ;;; TODO: function application as an expression (not a statement)--you should return
     ; the result of the evaluation of all the statements in the body
-    ; [(apply-expr sym exprs)
+    [(apply-expr sym exprs)
      ; evaluate all the arugments, then call the function
-     ;(let ([args (map (lambda (element) (eval-expr env element)) exprs)]
-           ;[func (apply-env env sym)])
+     (let ([args (map (lambda (element) (eval-expr env element)) exprs)]
+           [func (apply-env env sym)])
          ; make sure we found it, or return an error otherwise
-         ;(if func
+         (if func
                   ; grab the closure from the environment, which has parameters
-                     ; then evaluate all the statements and return the result
-             
+		  (let ([paramList (map (lambda (e1 e2) (memref e1 e2)) (closure-params func) args)])
+                    ; then evaluate all the statements and return the result
+		    (eval-expr (append env paramList) (closure-body func)))
+		  (error "function not found")))]
     ))
   
   
