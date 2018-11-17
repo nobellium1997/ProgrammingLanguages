@@ -272,9 +272,9 @@
          ; make sure we found it, or return an error otherwise
          (if func
                   ; grab the closure from the environment, which has parameters
-		  (let ([paramList (map (lambda (e1 e2) (memref e1 e2)) (closure-params func) args)])
+		  (let ([paramList (map (lambda (e1 e2) (cons e1 (memref e1 e2))) (closure-params func) args)])
                     ; then evaluate all the statements and return the result
-		    (eval-expr (append env paramList) (closure-body func)))
+		    (map (lambda (element) (eval-expr (append env paramList) element)) (closure-body func)))
 		  (error "function not found")))]
     ))
   
