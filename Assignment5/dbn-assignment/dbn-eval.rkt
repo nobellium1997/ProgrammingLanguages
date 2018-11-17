@@ -204,7 +204,8 @@
        (if func
 	   (begin
              (let ([paramList (map (lambda (e1 e2) (cons e1 (memref e1 e2))) (closure-params func) args)])
-	     (eval-statement (append env paramList) (car (closure-body func))))
+	     ; (eval-statement (append env paramList) (closure-body func))
+	     (map (lambda (element) (eval-statement (append env paramList) element)) (closure-body func)))
              env)
 	   (error "function not found")))]
     ))
